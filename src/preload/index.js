@@ -1,17 +1,13 @@
-import { contextBridge } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
+const { contextBridge, ipcRenderer } = require('electron')
+const api = {
+  onNewCustomer: (callback) => {
+    ipcRenderer.on('new-customer', callback)
 
-// Custom APIs for renderer
-const api = {}
-
-if (process.contextIsolated) {
-  try {
-    contextBridge.exposeInMainWorld('electron', electronAPI)
-    contextBridge.exposeInMainWorld('api', api)
-  } catch (error) {
-    console.error(error)
+    // função de cleanup
+    return () => {
+      ipcRenderer.off('new-customer', callback)
+    }
   }
-} else {
-  window.electron = electronAPI
-  window.api = api
 }
+
+contextBridge.exposeInMainWorld('api', api)
