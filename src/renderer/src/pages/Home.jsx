@@ -11,6 +11,9 @@ export default function Home() {
       <Link to="/create" className="page-link">
         Ir para pagina create
       </Link>
+      <br></br>
+
+      <button className="btn-primary">Buscar usuários</button>
     </Container>
   )
 }
