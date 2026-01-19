@@ -1,14 +1,20 @@
 import { Outlet } from 'react-router-dom'
+
+import '../styles/layout.css'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
 export default function Layout() {
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="layout">
       <Sidebar />
-      <div>
+
+      <div className="layout-content">
         <Header />
-        <Outlet />
+
+        <main className="layout-main">
+          <Outlet />
+        </main>
       </div>
     </div>
   )

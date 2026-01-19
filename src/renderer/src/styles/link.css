@@ -1,0 +1,22 @@
+.link {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 14px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.link:hover {
+  background: #1e293b;
+}
+
+.link.active {
+  background: #f8fafc;
+  color: #020617;
+  font-weight: 600;
+}
