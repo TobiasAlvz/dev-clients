@@ -1,3 +1,8 @@
 export default function Header() {
-  return <h1>Dev Clientes</h1>
+  return (
+    <div>
+      <h1>Dev Clientes</h1>
+      <hr></hr>
+    </div>
+  )
 }
