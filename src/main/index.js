@@ -1,21 +1,27 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+const { app, shell, BrowserWindow, ipcMain } = require('electron')
+const path = require('node:path')
+const { electronApp, optimizer, is } = require('@electron-toolkit/utils')
+const { createTray } = require(path.join(__dirname, 'tray.js'))
 
-
+import './ipc'
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
-    show: false,
+    show: true,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    backgroundColor: '#030712',
+    icon: path.resolve(process.cwd(), 'src', 'main', 'resources', 'icon.ico'),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
 
+  // TRAY
+  createTray(mainWindow)
+
+  // macOS dock icon
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
