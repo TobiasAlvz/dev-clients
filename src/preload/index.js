@@ -1,4 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
+
 const api = {
   onNewCustomer: (callback) => {
     ipcRenderer.on('new-customer', callback)
@@ -7,9 +8,11 @@ const api = {
     return () => {
       ipcRenderer.off('new-customer', callback)
     }
-  }
+  },
 
-  
+  fetchUsers: () => {
+    return ipcRenderer.invoke('fetch-users')
+  }
 }
 
 contextBridge.exposeInMainWorld('api', api)
