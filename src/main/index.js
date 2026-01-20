@@ -2,8 +2,8 @@ const { app, shell, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
 const { electronApp, optimizer, is } = require('@electron-toolkit/utils')
 const { createTray } = require(path.join(__dirname, 'tray.js'))
-
 import './ipc'
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 900,

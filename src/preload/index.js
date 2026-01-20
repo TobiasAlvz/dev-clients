@@ -8,6 +8,8 @@ const api = {
       ipcRenderer.off('new-customer', callback)
     }
   }
+
+  
 }
 
 contextBridge.exposeInMainWorld('api', api)

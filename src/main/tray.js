@@ -13,11 +13,6 @@ function getTrayIcon() {
   return path.join(process.resourcesPath, 'resources', 'icon.ico')
 }
 
-
-
-
-
-
 function createTray(window) {
   if (tray) return tray
 
