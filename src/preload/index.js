@@ -12,6 +12,14 @@ const api = {
 
   fetchUsers: () => {
     return ipcRenderer.invoke('fetch-users')
+  },
+
+  fetchAllCustomers: () => {
+    return ipcRenderer.invoke('fetch-all-customers')
+  },
+
+  addCustomer: (doc) => {
+    return ipcRenderer.invoke('add-customer', doc)
   }
 }
 
