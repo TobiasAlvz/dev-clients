@@ -59,3 +59,17 @@ async function fetchAllCustomers() {
 ipcMain.handle('fetch-all-customers', async () => {
   return await fetchAllCustomers()
 })
+
+// Buscar cliente pelo ID
+async function fetchCustomerById(docId) {
+  try {
+    const doc = await db.get(docId)
+    return doc
+  } catch (err) {
+    console.error('ERRO AO BUSCAR PELO ID:', err)
+    return null
+  }
+}
+ipcMain.handle('fetch-customer-id', async (_event, docId) => {
+  return await fetchCustomerById(docId)
+})

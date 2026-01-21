@@ -8,6 +8,12 @@ export default function Home() {
     console.log(response)
   }
 
+  async function handleCutomerById() {
+    const docId = '6a5612a1-852c-4461-b6a1-bdaeba4c30de'
+    const response = await window.api.fetchCustomerById(docId)
+    console.log(response)
+  }
+
   return (
     <Container>
       <h1 className="home-title">Página HOME!!!</h1>
@@ -20,6 +26,10 @@ export default function Home() {
 
       <button onClick={handleAdd} className="btn-primary">
         Buscar usuários
+      </button>
+      <br></br>
+      <button onClick={handleCutomerById} className="btn-primary">
+        Buscar usuário pelo Id
       </button>
     </Container>
   )

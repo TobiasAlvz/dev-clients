@@ -20,6 +20,10 @@ const api = {
 
   addCustomer: (doc) => {
     return ipcRenderer.invoke('add-customer', doc)
+  },
+
+  fetchCustomerById: (docId) => {
+    return ipcRenderer.invoke('fetch-customer-id', docId)
   }
 }
 
