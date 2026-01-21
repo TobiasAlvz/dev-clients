@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import Container from '../components/Container'
 import '../styles/home.css'
+import { useQuery } from '@tanstack/react-query'
 
 export default function Home() {
   const { data, isLoading, error } = useQuery({
