@@ -17,7 +17,9 @@ export default function Create() {
     <div>
       <h1>Página Novo cliente!!!</h1>
 
-      <button className="btn-primary" onClick={handleAddCustomer}>CADASTRAR</button>
+      <button className="btn-primary" onClick={handleAddCustomer}>
+        CADASTRAR
+      </button>
     </div>
   )
 }

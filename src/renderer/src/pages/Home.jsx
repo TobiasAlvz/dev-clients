@@ -17,6 +17,8 @@ export default function Home() {
       <button className="btn-primary">
         Buscar usuários
       </button>
+
+      
     </Container>
   )
 }

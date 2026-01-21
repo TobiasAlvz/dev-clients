@@ -1,22 +1,26 @@
 .link {
   display: flex;
   align-items: center;
+  gap: 10px;
   padding: 10px 14px;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #cbd5f5;
-  text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
   transition:
     background 0.15s ease,
-    color 0.15s ease;
+    color 0.15s ease,
+    transform 0.15s ease;
 }
 
 .link:hover {
   background: #1e293b;
+  transform: translateX(2px);
 }
 
 .link.active {
   background: #f8fafc;
   color: #020617;
   font-weight: 600;
+  box-shadow: 0 4px 12px rgba(248, 250, 252, 0.15);
 }
