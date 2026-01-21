@@ -45,3 +45,17 @@ ipcMain.handle('add-customer', async (event, doc) => {
   const result = await addCustomer(doc)
   return result
 })
+
+async function fetchAllCustomers() {
+  try {
+    const result = await db.allDocs({ include_docs: true })
+    // evito que ele me retorne ull, undefined
+    return result.rows.map((row) => row.doc).filter(Boolean)
+  } catch (err) {
+    console.error('Erro ao buscar', err)
+  }
+}
+
+ipcMain.handle('fetch-all-customers', async () => {
+  return await fetchAllCustomers()
+})

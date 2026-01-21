@@ -3,6 +3,10 @@ import Container from '../components/Container'
 import '../styles/home.css'
 
 export default function Home() {
+  async function handleAdd() {
+    const response = await window.api.fetchAllCustomers()
+    console.log(response)
+  }
 
   return (
     <Container>
@@ -14,11 +18,9 @@ export default function Home() {
       </Link>
       <br></br>
 
-      <button className="btn-primary">
+      <button onClick={handleAdd} className="btn-primary">
         Buscar usuários
       </button>
-
-      
     </Container>
   )
 }
