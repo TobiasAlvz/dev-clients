@@ -73,3 +73,18 @@ async function fetchCustomerById(docId) {
 ipcMain.handle('fetch-customer-id', async (_event, docId) => {
   return await fetchCustomerById(docId)
 })
+
+// criar, ler, atulizar, deletar
+async function deleteCustomer(docId) {
+  try {
+    const doc = await db.get(docId)
+    const result = await db.remove(doc._id, doc._rev)
+    return result
+  } catch (err) {
+    console.error('ERRO AO DELETAR PELO ID:', err)
+    return null
+  }
+}
+ipcMain.handle('delete-customer', async (_event, docId) => {
+  return await deleteCustomer(docId)
+})

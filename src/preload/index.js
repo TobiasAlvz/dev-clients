@@ -24,6 +24,9 @@ const api = {
 
   fetchCustomerById: (docId) => {
     return ipcRenderer.invoke('fetch-customer-id', docId)
+  },
+  deleteCustomer: (docId) => {
+    return ipcRenderer.invoke('delete-customer', docId)
   }
 }
 

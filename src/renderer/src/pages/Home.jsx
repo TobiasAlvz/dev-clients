@@ -3,34 +3,62 @@ import Container from '../components/Container'
 import '../styles/home.css'
 
 export default function Home() {
-  async function handleAdd() {
-    const response = await window.api.fetchAllCustomers()
-    console.log(response)
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['customers'],
+    queryFn: () => window.api.fetchAllCustomers()
+  })
+
+  if (isLoading) {
+    return <p className="home-loading">Carregando clientes...</p>
   }
 
-  async function handleCutomerById() {
-    const docId = '6a5612a1-852c-4461-b6a1-bdaeba4c30de'
-    const response = await window.api.fetchCustomerById(docId)
-    console.log(response)
+  if (error) {
+    return <p className="home-error">Erro ao carregar clientes</p>
   }
+  // async function handleAdd() {
+  //   const response = await window.api.fetchAllCustomers()
+  //   console.log(response)
+  // }
+
+  // async function handleCutomerById() {
+  //   const docId = '6a5612a1-852c-4461-b6a1-bdaeba4c30de'
+  //   const response = await window.api.fetchCustomerById(docId)
+  //   console.log(response)
+  // }
+
+  // // async function handleDelete() {
+  // //   const docId = '4fe74824-8187-4a1e-8a49-970415e15600'
+  // //   const response = await window.api.deleteCustomer(docId)
+  // //   console.log(response)
+  // }
 
   return (
-    <Container>
-      <h1 className="home-title">Página HOME!!!</h1>
-      <p className="home-subtitle">TESTEEEEEEE</p>
+    <div className="home-container">
+      <header className="home-header">
+        <h1 className="home-title">Todos os clientes</h1>
 
-      <Link to="/create" className="page-link">
-        Ir para pagina create
-      </Link>
-      <br></br>
+        <Link to="/create" className="home-link">
+          Novo cliente
+        </Link>
+      </header>
 
-      <button onClick={handleAdd} className="btn-primary">
-        Buscar usuários
-      </button>
-      <br></br>
-      <button onClick={handleCutomerById} className="btn-primary">
-        Buscar usuário pelo Id
-      </button>
-    </Container>
+      <section className="home-list">
+        {data?.map((customer) => (
+          <div className="home-card" key={customer._id}>
+            <p className="home-name">{customer.name}</p>
+
+            <p>
+              <span>Email:</span> {customer.email}
+            </p>
+
+            {customer.phone && (
+              <p>
+                <span>Telefone:</span> {customer.phone}
+              </p>
+            )}
+          </div>
+        ))}
+      </section>
+    </div>
   )
 }
