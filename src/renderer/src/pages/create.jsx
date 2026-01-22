@@ -2,7 +2,7 @@ export default function Create() {
   async function handleAddCustomer() {
     const doc = {
       name: 'fvnhmf',
-      email: 'teste@teste.com',
+      email: 'sahudiuashun jadhuf9hdoaijcohsdouvhisjdfojdsf',
       phone: '67999999',
       address: 'Rua X, centro',
       role: 'Frontend',
