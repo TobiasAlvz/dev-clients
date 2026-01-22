@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import '../styles/home.css'
 import { useQuery } from '@tanstack/react-query'
 
+
 export default function Home() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['customers'],
@@ -44,19 +45,21 @@ export default function Home() {
 
       <section className="home-list">
         {data?.map((customer) => (
-          <div className="home-card" key={customer._id}>
-            <p className="home-name">{customer.name}</p>
+          <Link to={`/customer/${customer._id}`} key={customer._id}>
+            <div className="home-card" key={customer._id}>
+              <p className="home-name">{customer.name}</p>
 
-            <p>
-              <span>Email:</span> {customer.email}
-            </p>
-
-            {customer.phone && (
               <p>
-                <span>Telefone:</span> {customer.phone}
+                <span>Email:</span> {customer.email}
               </p>
-            )}
-          </div>
+
+              {customer.phone && (
+                <p>
+                  <span>Telefone:</span> {customer.phone}
+                </p>
+              )}
+            </div>
+          </Link>
         ))}
       </section>
     </div>
