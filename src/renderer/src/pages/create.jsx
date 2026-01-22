@@ -54,8 +54,40 @@ export default function Create() {
   }
 
   return (
-    <div>
-      <h1>dishifvjsodv</h1>
+    <div className="create-container">
+      <section className="create-content">
+        <h1>Cadastrar Cliente</h1>
+        <form className="create-form" onSubmit={handleAddCustomer}>
+          <div className="form-group">
+            <label>Nome</label>
+            <input type="text" ref={nameRef}></input>
+          </div>
+
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" ref={emailRef}></input>
+          </div>
+
+          <div className="form-group">
+            <label>Endereço</label>
+            <input type="text" ref={adressRef}></input>
+          </div>
+
+          <div className="form-group">
+            <label>Cargo</label>
+            <input type="text" ref={roleRef}></input>
+          </div>
+
+          <div className="form-group">
+            <label>Telefone</label>
+            <input type="text" ref={phoneRef}></input>
+          </div>
+
+          <button type="submit" className="btn-primary">
+            Cadastrar
+          </button>
+        </form>
+      </section>
     </div>
   )
 }
