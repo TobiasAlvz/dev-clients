@@ -28,7 +28,9 @@ const api = {
   deleteCustomer: (docId) => {
     return ipcRenderer.invoke('delete-customer', docId)
   },
-  gerVersionApp: () => ipcRenderer.invoke('get-version-app')
+  gerVersionApp: () => ipcRenderer.invoke('get-version-app'),
+
+  updateCustomer: (doc) => ipcRenderer.invoke('update-customer', doc)
 }
 
 contextBridge.exposeInMainWorld('api', api)

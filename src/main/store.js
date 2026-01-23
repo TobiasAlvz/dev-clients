@@ -88,3 +88,23 @@ async function deleteCustomer(docId) {
 ipcMain.handle('delete-customer', async (_event, docId) => {
   return await deleteCustomer(docId)
 })
+
+async function updateCustomer(upadateData) {
+  try {
+    const doc = await db.get(upadateData._id)
+
+    const newDoc = {
+      ...doc,
+      ...upadateData,
+      _rev: doc._rev
+    }
+
+    return await db.put(newDoc)
+  } catch (err) {
+    console.error('Erro ao atulizar', err)
+  }
+}
+
+ipcMain.handle('update-customer', async (_event, data) => {
+  return await updateCustomer(data)
+})

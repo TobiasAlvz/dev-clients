@@ -1,10 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
 export default function About() {
-
-
-
-  
   const { data, isLoading, error } = useQuery({
     queryKey: ['verion-app'],
     queryFn: () => window.api.gerVersionApp()

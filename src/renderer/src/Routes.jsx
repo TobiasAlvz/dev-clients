@@ -5,6 +5,7 @@ import Detail from './pages/detail'
 import About from './pages/About'
 import Create from './pages/create'
 import Layout from './components/Layout'
+import Edit from './pages/edit'
 
 export default function Routes() {
   return (
@@ -15,6 +16,7 @@ export default function Routes() {
           <Route path="create" element={<Create />} />
           <Route path="about" element={<About />} />
           <Route path="/customer/:id" element={<Detail />} />
+          <Route path="/edit" element={<Edit />} />
         </Route>
       </RouterRoutes>
     </BrowserRouter>

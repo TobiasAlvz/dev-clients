@@ -58,6 +58,9 @@ export default function Detail() {
 
           <p className="datail-role">{data.status ? 'ATIVO' : 'INATIVO'}</p>
         </section>
+        <Link to="/edit" className="detail-back">
+          Editar
+        </Link>
       </div>
     </main>
   )
