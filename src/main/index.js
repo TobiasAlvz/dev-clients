@@ -20,6 +20,11 @@ function createWindow() {
 
   // TRAY
   createTray(mainWindow)
+  const { ipcMain, app } = require('electron')
+
+  ipcMain.handle('get-version-app', () => {
+    return app.getVersion()
+  })
 
   // macOS dock icon
   mainWindow.on('ready-to-show', () => {

@@ -27,7 +27,8 @@ const api = {
   },
   deleteCustomer: (docId) => {
     return ipcRenderer.invoke('delete-customer', docId)
-  }
+  },
+  gerVersionApp: () => ipcRenderer.invoke('get-version-app')
 }
 
 contextBridge.exposeInMainWorld('api', api)
