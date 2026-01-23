@@ -2,6 +2,7 @@ import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 import {useParams, useNavigate} from 'react-router-dom';
 import {useRef} from 'react';
 import '../styles/edit.css';
+
 export default function Edit () {
   const {id} = useParams ();
   const navigate = useNavigate ();
@@ -42,9 +43,20 @@ export default function Edit () {
       status: data.status,
     });
   }
-  return (
-    <div>
-      <h1>duahsiudhasoid</h1>
-    </div>
-  );
-}
+ return (
+  <div className="edit-container">
+    <form className="edit-form" onSubmit={handleSubmit}>
+      <h2 className="edit-title">Editar cliente</h2>
+
+      <input defaultValue={data.name} ref={nameRef} placeholder="Nome" />
+      <input defaultValue={data.email} ref={emailRef} placeholder="E-mail" />
+      <input defaultValue={data.phone} ref={phoneRef} placeholder="Telefone" />
+      <input defaultValue={data.address} ref={addressRef} placeholder="Endereço" />
+      <input defaultValue={data.role} ref={roleRef} placeholder="Cargo" />
+
+      <button type="submit" disabled={mutation.isLoading}>
+        {mutation.isLoading ? 'Salvando...' : 'Salvar alterações'}
+      </button>
+    </form>
+  </div>
+);

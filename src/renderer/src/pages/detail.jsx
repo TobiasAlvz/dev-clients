@@ -1,31 +1,31 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import '../styles/detail.css'
+import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
+import {useParams, Link, useNavigate} from 'react-router-dom';
+import '../styles/detail.css';
 
-export default function Detail() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const queryClient = useQueryClient()
+export default function Detail () {
+  const {id} = useParams ();
+  const navigate = useNavigate ();
+  const queryClient = useQueryClient ();
 
-  const { data, isLoading } = useQuery({
+  const {data, isLoading} = useQuery ({
     queryKey: ['customer', id],
-    queryFn: () => window.api.fetchCustomerById(id),
-    enabled: !!id
-  })
+    queryFn: () => window.api.fetchCustomerById (id),
+    enabled: !!id,
+  });
 
-  const deleteMutation = useMutation({
-    mutationFn: (customerId) => window.api.deleteCustomer(customerId),
+  const deleteMutation = useMutation ({
+    mutationFn: customerId => window.api.deleteCustomer (customerId),
     onSuccess: () => {
-      ;(queryClient.invalidateQueries({ queryKey: ['customers'] }), navigate('/'))
-    }
-  })
+      queryClient.invalidateQueries ({queryKey: ['customers']}), navigate ('/');
+    },
+  });
 
   if (isLoading) {
-    return <p>Carregando cliente</p>
+    return <p>Carregando cliente</p>;
   }
 
   if (!data) {
-    return <p>Cliente não existe</p>
+    return <p>Cliente não existe</p>;
   }
 
   return (
@@ -47,7 +47,7 @@ export default function Detail() {
 
           <button
             className="detail-delete"
-            onClick={() => deleteMutation.mutate(data._id)}
+            onClick={() => deleteMutation.mutate (data._id)}
             disabled={deleteMutation.isPending}
           >
             {deleteMutation.isPending ? 'Deletando...' : 'Deletar Cliente'}
@@ -58,10 +58,10 @@ export default function Detail() {
 
           <p className="datail-role">{data.status ? 'ATIVO' : 'INATIVO'}</p>
         </section>
-        <Link to="/edit" className="detail-back">
+        <Link to={`/edit/${data._id}`} className="detail-back">
           Editar
         </Link>
       </div>
     </main>
-  )
+  );
 }
